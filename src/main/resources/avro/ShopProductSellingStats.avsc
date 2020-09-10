@@ -1,0 +1,17 @@
+{
+  "type": "record",
+  "name": "ShopProductSellingStats",
+  "namespace": "chozoi.products.stats",
+  "fields": [
+    {
+      "name": "shop_id",
+      "type": "int",
+      "default": 0
+    },
+    {
+      "name": "count_product",
+      "type": "int",
+      "default": 0
+    }
+  ]
+}

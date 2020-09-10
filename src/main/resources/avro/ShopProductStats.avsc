@@ -1,0 +1,52 @@
+{
+  "type": "record",
+  "name": "ShopProductStats",
+  "namespace": "chozoi.products.stats",
+  "fields": [
+    {
+      "name": "shopId",
+      "type": "int",
+      "default": 0
+    },
+    {
+      "name": "countProduct",
+      "type": "int",
+      "default": 0
+    },
+    {
+        "name": "countDraftProduct",
+        "type": "int",
+        "default": 0
+      },
+      {
+        "name": "countPendingProduct",
+        "type": "int",
+        "default": 0
+      },
+      {
+        "name": "countReadyProduct",
+        "type": "int",
+        "default": 0
+      },
+      {
+        "name": "countPublicProduct",
+        "type": "int",
+        "default": 0
+      },
+      {
+        "name": "countRejectProduct",
+        "type": "int",
+        "default": 0
+      },
+      {
+        "name": "countReportProduct",
+        "type": "int",
+        "default": 0
+      },
+      {
+         "name": "countDeletedProduct",
+         "type": "int",
+         "default": 0
+      }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+    "type": "record",
+    "name": "Value",
+    "namespace": "chozoi.products.domain_event",
+    "fields": [
+        {
+            "name": "id",
+            "type": {
+                "type": "string",
+                "connect.version": 1,
+                "connect.name": "io.debezium.data.Uuid"
+            }
+        },
+        {
+            "name": "version",
+            "type": "int"
+        },
+        {
+            "name": "aggregate",
+            "type": "string"
+        },
+        {
+            "name": "content",
+            "type": "bytes"
+        },
+        {
+            "name": "type",
+            "type": [
+                "null",
+                "string"
+            ],
+            "default": null
+        },
+        {
+            "name": "created_at",
+            "type": [
+                "null",
+                {
+                    "type": "long",
+                    "connect.version": 1,
+                    "connect.name": "io.debezium.time.MicroTimestamp"
+                }
+            ],
+            "default": null
+        }
+    ],
+    "connect.name": "chozoi.products.domain_event.Value"
+}

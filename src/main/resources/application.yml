@@ -1,0 +1,58 @@
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+    topic:
+      num-partitions: ${KAFKA_NUM_PARTITIONS}
+      replication-factor: ${KAFKA_REPLICATION_FACTOR}
+    producer:
+      acks: all
+      retries: 100
+      key-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      properties:
+        schema.registry.url: ${SCHEMA_REGISTRY_URL}
+        specific.avro.reader: true
+      template:
+        default-topic: test
+    streams:
+      application-id: product-stream-processors
+      cache-max-size-buffering: 20MB
+      state-dir: ${STATE_DIR}
+      properties:
+        #        num.standby.replicas: 1
+        num.stream.threads: 3
+        auto.offset.reset: earliest
+        schema.registry.url: ${SCHEMA_REGISTRY_URL}
+        processing.guarantee: exactly_once
+        default.timestamp.extractor: org.apache.kafka.streams.processor.WallclockTimestampExtractor
+        buffered.records.per.partition: 100
+        default.key.serde: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde
+        default.value.serde: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde
+  datasource:
+    url: ${POSTGRE_DATABASE_URL}
+    username: ${POSTGRE_USER}
+    password: ${POSTGRE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 500000
+      maximum-pool-size: 5
+  data:
+    web:
+      pageable:
+        size-parameter: size
+        page-parameter: page
+        default-page-size: 20
+        max-page-size: 2000
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+        ddl-auto: none
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+server:
+  port: ${PORT}
+logging:
+  level:
+    com.chozoi: ${LOG_LEVEL}
+    org.springframework: ${LOG_LEVEL}
